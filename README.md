@@ -1,102 +1,28 @@
-sudo apt install libssl-dev libffi-dev python3-dev build-essential
-sudo apt update
-sudo apt install python3-pip
-pip3 install requests
-sudo apt install python3-pip
-python3 k7.00.py
---------------------------------------------------------------
-sudo apt update
-sudo apt install build-essential libssl-dev libffi-dev python3-dev
+import requests
+sessionid = "75631336147%3Abo9fEjENrKrJEd%3A25%3AAYiSuUUjhRMlejGLCaZfPiPNDTs6JK5VbNGXe4lRqQ"
 
-sudo apt --fix-broken install
+new_username = "vmtt7"
+if len(new_username) < 6:
+    new_username += "1"
 
-sudo apt install --reinstall python3-apt
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+    "Cookie": f"sessionid={sessionid};",
+    "x-csrftoken": "
+missing"
+}
 
-sudo apt update
-sudo apt upgrade
-==================================================
-wget https://fossies.org/linux/www/requests-2.32.4.tar.gz
+url = "https://www.instagram.com/accounts/edit/"
 
-sudo apt update
-sudo apt install python3-setuptools -y
+data = {
+    "username": new_username
+}
 
+response = requests.post(url, headers=headers, data=data)
 
-cd ~/requests-2.32.4
-python3 setup.py install --user
-
-
-
-python3 -c "import requests; print(requests.__version__)"
-
-
-python3 ~/Downloads/k7.00.py
-
-wget https://files.pythonhosted.org/packages/source/s/setuptools/setuptools-69.5.1.tar.gz
-
-
-tar -xzf setuptools-69.5.1.tar.gz
-cd setuptools-69.5.1
-
-
-python3 setup.py install --user
-
-\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-https://pypi.org/project/certifi/#files
-
-certifi-2024.2.2.tar.gz
-=====================================
-cd ~/Downloads/certifi-2025.8.3
-python3 setup.py install --user
-
-
-cd ~/requests-2.32.4
-python3 setup.py install --user
-
-
-
-cd ~/requests-2.32.4
-python3 setup.py install --user
-
-\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-https://pypi.org/project/urllib3/#files
-
-urllib3-<version>.tar.gz
-\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-tar -xzf urllib3-2.5.0.tar.gz
-
-cd urllib3-2.5.0
-
-python3 setup.py install --user
-
-================================================
-
-sudo apt update
-sudo apt install python3-pip
-
-
-python3 -m pip install .
-
-===========================================================ssl
-sudo apt update
-sudo apt install libssl-dev
-sudo apt install python3-dev
-sudo apt install build-essential
-
-
-python3 -c "import ssl; print(ssl.OPENSSL_VERSION)"
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-sudo apt update
-sudo apt install libssl-dev libffi-dev python3-dev build-essential
-
-sudo apt install --reinstall python3
-
-python3 -c "import ssl; print(ssl.OPENSSL_VERSION)"
-
-
-python3 -m ensurepip --upgrade
-python3 -m pip install --upgrade pip setuptools wheel
-
-
+if response.status_code == 200:
+    print(f"Username changed successfully to {new_username}")
+else:
+    print(f"Failed to change username. Status: {response.status_code}")
 
 
