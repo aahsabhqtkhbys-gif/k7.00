@@ -1,0 +1,26 @@
+import requests
+sessionid = "75631336147%3Abo9fEjENrKrJEd%3A25%3AAYiSuUUjhRMlejGLCaZfPiPNDTs6JK5VbNGXe4lRqQ"
+
+new_username = "vmtt7"
+if len(new_username) < 6:
+    new_username += "1"
+
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+    "Cookie": f"sessionid={sessionid};",
+    "x-csrftoken": "
+missing"
+}
+
+url = "https://www.instagram.com/accounts/edit/"
+
+data = {
+    "username": new_username
+}
+
+response = requests.post(url, headers=headers, data=data)
+
+if response.status_code == 200:
+    print(f"Username changed successfully to {new_username}")
+else:
+    print(f"Failed to change username. Status: {response.status_code}")
